@@ -60,7 +60,6 @@ class ViewController: UIViewController {
         
         } else {
             enableLetterButtons(false)
-            currentGame.formattedWord = ""
         }
         updateUI()
     }
