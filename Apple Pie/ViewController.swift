@@ -17,8 +17,16 @@ class ViewController: UIViewController {
     let incorrectMovesAllowed = 7
     
     // количество выигрышей и проигрышей
-    var totalWins  = 0
-    var totalLosses = 0
+    var totalWins  = 0 {
+        didSet {
+            newRound()
+        }
+    }
+    var totalLosses = 0 {
+        didSet {
+            newRound()
+        }
+    }
     
     var currentGame: Game! // текущая игра
     
@@ -41,12 +49,27 @@ class ViewController: UIViewController {
     
     // запуск нового раунда игры
     func newRound() {
-        let newWord = listOfWords.removeFirst()
+        if !listOfWords.isEmpty {
+            let newWord = listOfWords.removeFirst()
+        
         
         currentGame = Game(word: newWord, incorrectMovesRemaining: incorrectMovesAllowed,
                            guessedLetters: [])
         
+        enableLetterButtons(true)
+        
+        } else {
+            enableLetterButtons(false)
+            currentGame.formattedWord = ""
+        }
         updateUI()
+    }
+    
+    //  запретить\разрешить кнопки
+    func enableLetterButtons(_ enable: Bool) {
+        for button in letterButtons {
+            button.isEnabled = enable
+        }
     }
         
     // обновление интерфейса
