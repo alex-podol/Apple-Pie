@@ -18,6 +18,22 @@ struct Game {
     //  список нажатых букв
     var guessedLetters: [Character]
     
+    // отображаемое слово с угаданных букв
+    var formattedWord: String {
+        var guessedWord = ""
+        
+        for letter in word {
+            if guessedLetters.contains(letter) {
+                guessedWord += "\(letter)"
+            } else {
+                guessedWord += "_"
+            }
+        }
+        
+        return ""
+    }
+    
+    
     // обработка нажатой кнопки
     mutating func playerGuessed(letter: Character) {
         guessedLetters.append(letter)

@@ -55,6 +55,9 @@ class ViewController: UIViewController {
         let imageName = "Tree \(currentGame.incorrectMovesRemaining)"
         treeImageView.image = UIImage(named: imageName)
         
+        // обновляем угадываемое слово
+        correctWordLabel.text = currentGame.formattedWord
+        
         
         // обновляем счет
         scoreLabel.text = "Выигрыши: \(totalWins), проигрыши: \(totalLosses)"
