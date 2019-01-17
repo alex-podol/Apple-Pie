@@ -35,33 +35,40 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // запуск нового раунда игры
-        //newRound()
+        newRound()
         
     }
     
     // запуск нового раунда игры
     func newRound() {
         let newWord = listOfWords.removeFirst()
-        currentGame = Game(word: newWord, incorrectMovesRemaining: incorrectMovesAllowed)
+        
+        currentGame = Game(word: newWord, incorrectMovesRemaining: incorrectMovesAllowed,
+                           guessedLetters: [])
+        
+        updateUI()
     }
         
     // обновление интерфейса
     func updateUI() {
         // обновляем картинку
         let imageName = "Tree \(currentGame.incorrectMovesRemaining)"
-        let image = UIImage(named: imageName)
-        treeImageView.image = image
+        treeImageView.image = UIImage(named: imageName)
+        
         
         // обновляем счет
         scoreLabel.text = "Выигрыши: \(totalWins), проигрыши: \(totalLosses)"
-        
-        
-        }
+    }
     
     
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         sender.isEnabled = false
+        let letterString = sender.title(for: .normal)!
+        let letter = Character(letterString.lowercased())
+        
+        currentGame.playerGuessed(letter: letter)
+        updateUI()
     }
     
 

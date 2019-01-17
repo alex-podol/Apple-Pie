@@ -15,6 +15,20 @@ struct Game {
     var word: String // угадываемое слово
     var incorrectMovesRemaining: Int // количество оставшихся попыток
     
+    //  список нажатых букв
+    var guessedLetters: [Character]
+    
+    // обработка нажатой кнопки
+    mutating func playerGuessed(letter: Character) {
+        guessedLetters.append(letter)
+        
+        // проверяем - содержится ли буква в слове
+        if !word.contains(letter) {
+            incorrectMovesRemaining -= 1
+        }
+    }
+    
+    
     
     
     
