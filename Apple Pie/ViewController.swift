@@ -56,7 +56,13 @@ class ViewController: UIViewController {
         treeImageView.image = UIImage(named: imageName)
         
         // обновляем угадываемое слово
-        correctWordLabel.text = currentGame.formattedWord
+        let letters = [String]()
+        for letter in currentGame.formattedWord {
+            letters.append(String(letter))
+        }
+        let wordWithSpaces = letters.joined(separator: " ")
+        
+        correctWordLabel.text = wordWithSpaces
         
         
         // обновляем счет
@@ -71,6 +77,8 @@ class ViewController: UIViewController {
         let letter = Character(letterString.lowercased())
         
         currentGame.playerGuessed(letter: letter)
+        print("\(currentGame.word) \(letter)")
+        
         updateUI()
     }
     

@@ -30,7 +30,7 @@ struct Game {
             }
         }
         
-        return ""
+        return guessedWord
     }
     
     
