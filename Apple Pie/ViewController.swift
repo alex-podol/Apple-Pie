@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         treeImageView.image = UIImage(named: imageName)
         
         // обновляем угадываемое слово
-        let letters = [String]()
+        var letters = [String]()
         for letter in currentGame.formattedWord {
             letters.append(String(letter))
         }
